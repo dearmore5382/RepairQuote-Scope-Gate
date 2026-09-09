@@ -1,27 +1,34 @@
-# RepairScope
+# RepairQuote Scope Gate
 
-RepairScope is a non-payable GenLayer dApp for one narrow question: how does a newly reported rental repair condition relate to a jointly sealed move-in baseline and repair-duty policy?
+RepairQuote Scope Gate is a non-payable GenLayer dApp for checking whether a commercial repair quote stays within an approved repair scope. It replaces the earlier RepairScope prototype and deliberately avoids image-based damage attribution or competing party narratives.
 
-The owner and tenant jointly establish the baseline. A later report contains one statement from each party. Validators independently produce bounded semantic observations, while deterministic contract code derives `OWNER_RESPONSIBLE`, `TENANT_RESPONSIBLE`, `SHARED_RESPONSIBILITY`, `NORMAL_WEAR`, or `INSUFFICIENT_EVIDENCE`.
+## Trust model
 
-RepairScope does not authenticate photographs, inspect a building, calculate costs, transfer funds, or decide legal liability.
+1. A creator registers two commit-pinned HTTPS JSON URLs and their SHA-256 digests.
+2. Validators fetch the exact bytes through `strict_eq` consensus.
+3. The contract verifies both digests and a narrow shared schema before storing the snapshots.
+4. Validators return one bounded semantic verdict: `QUOTE_ACCEPTABLE`, `REVIEW_REQUIRED`, or `SCOPE_VIOLATION`.
+5. Contract code stores a deterministic reason and freezes the assessed record.
 
-## Repository
+The contract does not decide price, workmanship, urgency, legal liability, or payment. Public fixtures are synthetic test data, not evidence of real work.
 
-- `contracts/RepairScope.py` — reviewed intelligent contract
-- `SPEC.md` — proof obligation, lifecycle, consensus boundary, and precedence
-- `tests/` — semantic, static, direct-mode, and frontend protocol tests
-- `verification/AUDIT.md` — honest pre-deployment adversarial audit
-- `verification/LIVE_MATRIX.md` — frozen post-deployment test plan
-- `app/` — English-only dApp frontend using the supplied RepairScope logo
+## Contract workflow
+
+`DRAFT -> CAPTURED -> ASSESSED -> CLOSED`
+
+- `create_review`: locks URLs and expected digests.
+- `capture_sources`: fetches, hashes, validates, and snapshots both JSON documents.
+- `assess_quote`: compares the quote with the authenticated scope.
+- `close_review`: creator-only terminal transition.
+- `get_review`: authoritative flat readback.
 
 ## Local verification
 
 ```text
-python -m pytest -q
+pytest -q
 npm test
 npm run lint
 npm run build
 ```
 
-The frontend remains in preview mode until a matching-source Studionet deployment passes the live matrix.
+Deployment is intentionally unset until a matching-source Studionet contract passes the live happy, failure, and adversarial matrix.

@@ -1,35 +1,26 @@
 import ast
 from pathlib import Path
+SOURCE = (Path(__file__).resolve().parents[1] / "contracts" / "RepairQuoteScopeGate.py").read_text(encoding="utf-8")
 
-SOURCE = (Path(__file__).resolve().parents[1] / "contracts" / "RepairScope.py").read_text(encoding="utf-8")
-
-
-def test_contract_shape_and_no_custody_or_fetch():
+def test_contract_shape_and_non_payable_profile():
     ast.parse(SOURCE)
-    assert "class RepairScope(gl.Contract):" in SOURCE
-    assert "payable" not in SOURCE and "emit_transfer" not in SOURCE and "web.get" not in SOURCE
+    assert "class RepairQuoteScopeGate(gl.Contract):" in SOURCE
+    assert "payable" not in SOURCE and "emit_transfer" not in SOURCE
 
+def test_sources_are_fetched_exactly_and_digest_bound():
+    assert SOURCE.count("gl.eq_principle.strict_eq(") == 2
+    assert "hashlib.sha256(approved.encode" in SOURCE
+    assert "hashlib.sha256(quote.encode" in SOURCE
+    assert "_validate_package(approved, quote)" in SOURCE
 
-def test_model_returns_observations_not_outcome():
-    block = SOURCE.split("def _classify", 1)[1].split("def _validate_candidate", 1)[0]
-    assert "Return no verdict, liability percentage, remedy, payment" in block
-    assert "_derive" not in block
+def test_ai_surface_is_one_bounded_verdict():
+    block = SOURCE.split("def _classify_quote", 1)[1].split("class RepairQuoteScopeGate", 1)[0]
+    for value in ("QUOTE_ACCEPTABLE", "REVIEW_REQUIRED", "SCOPE_VIOLATION"): assert value in block
+    assert "Do not judge price, workmanship, urgency, legal liability, or payment" in block
+    assert "json.dumps" not in block
 
-
-def test_validators_falsify_candidate_against_same_sealed_evidence():
-    block = SOURCE.split("def _consensus", 1)[1].split("@gl.public.write", 1)[0]
-    assert "_validate_candidate(*args, _normalize(result.calldata))" in block
-    verifier = SOURCE.split("def _validate_candidate", 1)[1].split("class RepairScope", 1)[0]
-    assert '"candidate_effect": _derive(candidate)' in verifier
-    assert "Act as a falsifier" in verifier
-
-
-def test_retry_precedes_mutation_and_reports_are_bounded():
-    block = SOURCE.split("def assess_report", 1)[1].split("@gl.public.write", 1)[0]
-    assert block.index('result["outcome"] == "RETRYABLE"') < block.index('self.report_statuses[report_id] = "FINALIZED"')
-    assert "MAX_REPORTS_PER_PROPERTY" in SOURCE and "PENDING_REPORT_EXISTS" in SOURCE
-
-
-def test_two_party_baseline_and_report_authority_exist():
-    for marker in ("TENANT_ONLY", "OWNER_ONLY", "COUNTERPARTY_ONLY", "REPORTER_ONLY", "STALE_REPORT_REVISION"):
-        assert marker in SOURCE
+def test_source_failures_precede_storage_mutation():
+    block = SOURCE.split("def capture_sources", 1)[1].split("@gl.public.write", 1)[0]
+    mutation = block.index('self.approved_bodies[review_id] = approved')
+    for marker in ("SOURCE_UNAVAILABLE", "APPROVED_SCOPE_HASH_MISMATCH", "QUOTE_HASH_MISMATCH", "INVALID_PACKAGE_SCHEMA"):
+        assert block.index(marker) < mutation

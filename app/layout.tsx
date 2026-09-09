@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'RepairScope — Joint Repair Responsibility Records',
-  description: 'A GenLayer dApp for bounded, two-party rental repair responsibility records.',
+  title: 'RepairQuote Scope Gate — Authenticated Quote Review',
+  description: 'A GenLayer dApp that binds immutable repair documents and checks contractor quotes against approved scope.',
 };
 
 export default function RootLayout({
