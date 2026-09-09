@@ -14,7 +14,7 @@ Verified local gates on 2026-09-09:
 - Production build: passed.
 - `git diff --check`: passed.
 
-The previous RepairScope deployments and their results do not apply to RepairQuote Scope Gate. A new address is required because the contract class, public methods, storage model, and trust boundary have changed.
+Only the matching-source RepairQuote Scope Gate deployment is eligible for this release.
 
 Required before deployment:
 

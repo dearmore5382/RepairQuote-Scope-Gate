@@ -1,6 +1,6 @@
 # RepairQuote Scope Gate
 
-RepairQuote Scope Gate is a non-payable GenLayer dApp for checking whether a commercial repair quote stays within an approved repair scope. It replaces the earlier RepairScope prototype and deliberately avoids image-based damage attribution or competing party narratives.
+RepairQuote Scope Gate is a non-payable GenLayer dApp for checking whether a commercial repair quote stays within an approved repair scope. It deliberately avoids image-based damage attribution or competing party narratives.
 
 ## Trust model
 
