@@ -36,9 +36,12 @@ The reviewed source is `contracts/RepairScope.py`. Local syntax, semantic deriva
 - Test identities use the same 20-byte address representation accepted by the contract.
 - Frontend receipt reconciliation verifies the exact transaction identity, calldata, returned value, and state readback.
 - The supplied image is branding only; no image or mutable web source sits on the adjudication critical path.
+- Live evidence from the first matching-source deployment showed that independent full re-derivation of five coupled fields produced majority disagreement despite the same leader outcome. The successor uses a prover/falsifier topology: validators test the leader's complete candidate and deterministic effect against the same sealed evidence, rather than generating another five-field tuple and comparing it indirectly.
 
 ## Residual boundary
 
 The protocol cannot prove physical damage, authorship truth, fair market repair cost, or legal liability. Live validator variability and Studio transaction behavior remain to be tested after deployment using the frozen matrix.
+
+The historical address `0x789c96431699b1e280E36A57102A0842Bae17aE5` is excluded from release. Its failed/retryable attempts remain preserved in `verification/LIVE_RESULTS.md` and the public JSON ledger.
 
 The optional browser WebMCP staging tool is implemented but not claimed as runtime-verified because this pre-deployment environment did not expose a supported WebMCP context.

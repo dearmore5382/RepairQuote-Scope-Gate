@@ -37,7 +37,7 @@ Report:   OPEN -> RESPONDED -> SEALED -> FINALIZED
 | duty_alignment | OWNER, TENANT, SHARED, CONFLICT, UNCLEAR | effect-aligned |
 | account_consistency | CONSISTENT, CONFLICTING, INCOMPLETE | effect-aligned |
 
-Validators independently reclassify the same four sealed texts. Their outputs are equivalent only when deterministic derivation yields the same `outcome` and `reason`.
+The leader classifies the sealed texts. Each validator independently acts as a falsifier against the same sealed evidence and accepts only when every consequential observation and its deterministic effect are supported without contradiction. Free-form prose is never compared or stored.
 
 ## Precedence
 

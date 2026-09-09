@@ -11,15 +11,17 @@ def test_contract_shape_and_no_custody_or_fetch():
 
 
 def test_model_returns_observations_not_outcome():
-    block = SOURCE.split("def _classify", 1)[1].split("class RepairScope", 1)[0]
+    block = SOURCE.split("def _classify", 1)[1].split("def _validate_candidate", 1)[0]
     assert "Return no verdict, liability percentage, remedy, payment" in block
     assert "_derive" not in block
 
 
-def test_validators_independently_repeat_and_compare_effect():
+def test_validators_falsify_candidate_against_same_sealed_evidence():
     block = SOURCE.split("def _consensus", 1)[1].split("@gl.public.write", 1)[0]
-    assert block.count("_classify(*args)") >= 2
-    assert "_derive(_normalize(result.calldata)) == _derive" in block
+    assert "_validate_candidate(*args, _normalize(result.calldata))" in block
+    verifier = SOURCE.split("def _validate_candidate", 1)[1].split("class RepairScope", 1)[0]
+    assert '"candidate_effect": _derive(candidate)' in verifier
+    assert "Act as a falsifier" in verifier
 
 
 def test_retry_precedes_mutation_and_reports_are_bounded():

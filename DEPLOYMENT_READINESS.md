@@ -1,12 +1,12 @@
 # Deployment Readiness
 
-Status: **READY FOR USER DEPLOYMENT — NOT YET DEPLOYED**
+Status: **SUCCESSOR READY FOR USER DEPLOYMENT — HISTORICAL DEPLOYMENT EXCLUDED**
 
 - Contract: `contracts/RepairScope.py`
 - Constructor arguments: none
 - Network: GenLayer Studionet
 - Payable: no
-- Source SHA-256: `e55e7e8f75881d62abfad04315f2414fe64921f98ae313d9191bccc83d3db334`
+- Source SHA-256: `dfae7d7704148300178bac35f990dabc11b51f08eba255d4de177f8cffb4fdd2`
 - Python tests: 15 passed
 - Frontend protocol tests: 6 passed
 - Production frontend build: passed

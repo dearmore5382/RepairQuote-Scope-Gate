@@ -1,0 +1,255 @@
+{
+  "contract": "0x789c96431699b1e280E36A57102A0842Bae17aE5",
+  "source_sha256": "e55e7e8f75881d62abfad04315f2414fe64921f98ae313d9191bccc83d3db334",
+  "started_at": "2026-09-08T23:52:45.287384+00:00",
+  "wallets": [
+    "0x736A168247e3f0C52F7907c9a8fDac572DF9c8bB",
+    "0xA63DE24e30C88FB1019E8956654730316e36eDBE"
+  ],
+  "steps": [
+    {
+      "id": "F1-invalid-create",
+      "actor": "0x736A168247e3f0C52F7907c9a8fDac572DF9c8bB",
+      "method": "create_property",
+      "args": [
+        "",
+        "Kitchen",
+        "Sink",
+        "At handover, the kitchen sink, tap, cabinet base, drain and visible supply lines were dry, intact and operating normally. No water staining or swelling was recorded.",
+        "The owner maintains concealed plumbing, supply lines and building systems. The tenant is responsible for misuse, avoidable overflow and reasonable day-to-day care. Ordinary wear is not tenant damage. Accidental damage with shared maintenance contribution is shared responsibility.",
+        "0xA63DE24e30C88FB1019E8956654730316e36eDBE"
+      ],
+      "allowed": [
+        "INVALID_PROPERTY_REFERENCE"
+      ],
+      "status": "VERIFIED",
+      "hash": "0xb4ae55f8fe5d16ea594de3ee805338e5f3809a5bcf39021db680eff9c76adc22",
+      "actual": "INVALID_PROPERTY_REFERENCE",
+      "readback": {
+        "counts": "0|0"
+      }
+    },
+    {
+      "id": "H1-create",
+      "actor": "0x736A168247e3f0C52F7907c9a8fDac572DF9c8bB",
+      "method": "create_property",
+      "args": [
+        "LEASE-204-KITCHEN",
+        "Kitchen",
+        "Sink and supply lines",
+        "At handover, the kitchen sink, tap, cabinet base, drain and visible supply lines were dry, intact and operating normally. No water staining or swelling was recorded.",
+        "The owner maintains concealed plumbing, supply lines and building systems. The tenant is responsible for misuse, avoidable overflow and reasonable day-to-day care. Ordinary wear is not tenant damage. Accidental damage with shared maintenance contribution is shared responsibility.",
+        "0xA63DE24e30C88FB1019E8956654730316e36eDBE"
+      ],
+      "allowed": [
+        "0"
+      ],
+      "status": "VERIFIED",
+      "hash": "0x6c41a61e920984fc96c335cab018da33bc5cb3a941143ca1f20e08429457f1f5",
+      "actual": "0",
+      "readback": {
+        "counts": "1|0",
+        "property0": "DRAFT|0x736A168247e3f0C52F7907c9a8fDac572DF9c8bB|0xA63DE24e30C88FB1019E8956654730316e36eDBE|LEASE-204-KITCHEN|Kitchen|Sink and supply lines|At handover, the kitchen sink, tap, cabinet base, drain and visible supply lines were dry, intact and operating normally. No water staining or swelling was recorded.|The owner maintains concealed plumbing, supply lines and building systems. The tenant is responsible for misuse, avoidable overflow and reasonable day-to-day care. Ordinary wear is not tenant damage. Accidental damage with shared maintenance contribution is shared responsibility.|0|0"
+      }
+    },
+    {
+      "id": "F2-owner-accept",
+      "actor": "0x736A168247e3f0C52F7907c9a8fDac572DF9c8bB",
+      "method": "accept_baseline",
+      "args": [
+        0
+      ],
+      "allowed": [
+        "TENANT_ONLY"
+      ],
+      "status": "VERIFIED",
+      "hash": "0x8da7d4cdc2bf2be43cc0ef77c40b946a567d638fde92feefc98f4fed30538fe1",
+      "actual": "TENANT_ONLY",
+      "readback": {
+        "counts": "1|0",
+        "property0": "DRAFT|0x736A168247e3f0C52F7907c9a8fDac572DF9c8bB|0xA63DE24e30C88FB1019E8956654730316e36eDBE|LEASE-204-KITCHEN|Kitchen|Sink and supply lines|At handover, the kitchen sink, tap, cabinet base, drain and visible supply lines were dry, intact and operating normally. No water staining or swelling was recorded.|The owner maintains concealed plumbing, supply lines and building systems. The tenant is responsible for misuse, avoidable overflow and reasonable day-to-day care. Ordinary wear is not tenant damage. Accidental damage with shared maintenance contribution is shared responsibility.|0|0"
+      }
+    },
+    {
+      "id": "H2-tenant-accept",
+      "actor": "0xA63DE24e30C88FB1019E8956654730316e36eDBE",
+      "method": "accept_baseline",
+      "args": [
+        0
+      ],
+      "allowed": [
+        "BASELINE_ACCEPTED"
+      ],
+      "status": "VERIFIED",
+      "hash": "0x344e2c10351384cda316ba65c8b764730141c6cc5b081a7def9249c163a9bd62",
+      "actual": "BASELINE_ACCEPTED",
+      "readback": {
+        "counts": "1|0",
+        "property0": "ACCEPTED|0x736A168247e3f0C52F7907c9a8fDac572DF9c8bB|0xA63DE24e30C88FB1019E8956654730316e36eDBE|LEASE-204-KITCHEN|Kitchen|Sink and supply lines|At handover, the kitchen sink, tap, cabinet base, drain and visible supply lines were dry, intact and operating normally. No water staining or swelling was recorded.|The owner maintains concealed plumbing, supply lines and building systems. The tenant is responsible for misuse, avoidable overflow and reasonable day-to-day care. Ordinary wear is not tenant damage. Accidental damage with shared maintenance contribution is shared responsibility.|0|0"
+      }
+    },
+    {
+      "id": "F3-tenant-seal-property",
+      "actor": "0xA63DE24e30C88FB1019E8956654730316e36eDBE",
+      "method": "seal_property",
+      "args": [
+        0
+      ],
+      "allowed": [
+        "OWNER_ONLY"
+      ],
+      "status": "VERIFIED",
+      "hash": "0x7faba92030af0d0b24bfd36668ad190fffc2efda1f635c12f5b24d20b4ecbd86",
+      "actual": "OWNER_ONLY",
+      "readback": {
+        "counts": "1|0",
+        "property0": "ACCEPTED|0x736A168247e3f0C52F7907c9a8fDac572DF9c8bB|0xA63DE24e30C88FB1019E8956654730316e36eDBE|LEASE-204-KITCHEN|Kitchen|Sink and supply lines|At handover, the kitchen sink, tap, cabinet base, drain and visible supply lines were dry, intact and operating normally. No water staining or swelling was recorded.|The owner maintains concealed plumbing, supply lines and building systems. The tenant is responsible for misuse, avoidable overflow and reasonable day-to-day care. Ordinary wear is not tenant damage. Accidental damage with shared maintenance contribution is shared responsibility.|0|0"
+      }
+    },
+    {
+      "id": "H3-owner-seal-property",
+      "actor": "0x736A168247e3f0C52F7907c9a8fDac572DF9c8bB",
+      "method": "seal_property",
+      "args": [
+        0
+      ],
+      "allowed": [
+        "PROPERTY_SEALED"
+      ],
+      "status": "VERIFIED",
+      "hash": "0xb28b7b795a2164f33a7c75f4fe28e15dcd6d8491ef904ec00182b5e329870756",
+      "actual": "PROPERTY_SEALED",
+      "readback": {
+        "counts": "1|0",
+        "property0": "SEALED|0x736A168247e3f0C52F7907c9a8fDac572DF9c8bB|0xA63DE24e30C88FB1019E8956654730316e36eDBE|LEASE-204-KITCHEN|Kitchen|Sink and supply lines|At handover, the kitchen sink, tap, cabinet base, drain and visible supply lines were dry, intact and operating normally. No water staining or swelling was recorded.|The owner maintains concealed plumbing, supply lines and building systems. The tenant is responsible for misuse, avoidable overflow and reasonable day-to-day care. Ordinary wear is not tenant damage. Accidental damage with shared maintenance contribution is shared responsibility.|0|0"
+      }
+    },
+    {
+      "id": "H4-open-misuse",
+      "actor": "0xA63DE24e30C88FB1019E8956654730316e36eDBE",
+      "method": "open_report",
+      "args": [
+        0,
+        "After handover, the tenant left the tap running with the drain stopper closed for about twenty minutes. Water overflowed onto the previously dry cabinet base, causing new swelling."
+      ],
+      "allowed": [
+        "0"
+      ],
+      "status": "VERIFIED",
+      "hash": "0x7b661d51fcf287782d1fb09b5c08ac38230060403a7a2c2c1b48187955d9b0ed",
+      "actual": "0",
+      "readback": {
+        "counts": "1|1",
+        "property0": "SEALED|0x736A168247e3f0C52F7907c9a8fDac572DF9c8bB|0xA63DE24e30C88FB1019E8956654730316e36eDBE|LEASE-204-KITCHEN|Kitchen|Sink and supply lines|At handover, the kitchen sink, tap, cabinet base, drain and visible supply lines were dry, intact and operating normally. No water staining or swelling was recorded.|The owner maintains concealed plumbing, supply lines and building systems. The tenant is responsible for misuse, avoidable overflow and reasonable day-to-day care. Ordinary wear is not tenant damage. Accidental damage with shared maintenance contribution is shared responsibility.|0|1"
+      }
+    },
+    {
+      "id": "F4-duplicate-pending",
+      "actor": "0x736A168247e3f0C52F7907c9a8fDac572DF9c8bB",
+      "method": "open_report",
+      "args": [
+        0,
+        "A second report must not replace the pending report."
+      ],
+      "allowed": [
+        "PENDING_REPORT_EXISTS"
+      ],
+      "status": "VERIFIED",
+      "hash": "0xb1914b96a60723133f90a201d60cd72c588a082eec9bef462af990387e4f5bb3",
+      "actual": "PENDING_REPORT_EXISTS",
+      "readback": {
+        "counts": "1|1",
+        "property0": "SEALED|0x736A168247e3f0C52F7907c9a8fDac572DF9c8bB|0xA63DE24e30C88FB1019E8956654730316e36eDBE|LEASE-204-KITCHEN|Kitchen|Sink and supply lines|At handover, the kitchen sink, tap, cabinet base, drain and visible supply lines were dry, intact and operating normally. No water staining or swelling was recorded.|The owner maintains concealed plumbing, supply lines and building systems. The tenant is responsible for misuse, avoidable overflow and reasonable day-to-day care. Ordinary wear is not tenant damage. Accidental damage with shared maintenance contribution is shared responsibility.|0|1"
+      }
+    },
+    {
+      "id": "H5-owner-response",
+      "actor": "0x736A168247e3f0C52F7907c9a8fDac572DF9c8bB",
+      "method": "respond_report",
+      "args": [
+        0,
+        "I inspected after the reported overflow. The cabinet shows fresh overflow staining from above; the visible supply and drain connections were dry and operating, with no system leak."
+      ],
+      "allowed": [
+        "REPORT_RESPONDED"
+      ],
+      "status": "VERIFIED",
+      "hash": "0xe9bfe461b08a3507de09d3cbfeb2913bd8e4b674f61e6e5b34296423c920b476",
+      "actual": "REPORT_RESPONDED",
+      "readback": {
+        "counts": "1|1",
+        "property0": "SEALED|0x736A168247e3f0C52F7907c9a8fDac572DF9c8bB|0xA63DE24e30C88FB1019E8956654730316e36eDBE|LEASE-204-KITCHEN|Kitchen|Sink and supply lines|At handover, the kitchen sink, tap, cabinet base, drain and visible supply lines were dry, intact and operating normally. No water staining or swelling was recorded.|The owner maintains concealed plumbing, supply lines and building systems. The tenant is responsible for misuse, avoidable overflow and reasonable day-to-day care. Ordinary wear is not tenant damage. Accidental damage with shared maintenance contribution is shared responsibility.|0|1"
+      }
+    },
+    {
+      "id": "F5-owner-seal-report",
+      "actor": "0x736A168247e3f0C52F7907c9a8fDac572DF9c8bB",
+      "method": "seal_report",
+      "args": [
+        0
+      ],
+      "allowed": [
+        "REPORTER_ONLY"
+      ],
+      "status": "VERIFIED",
+      "hash": "0x3a88bf04c5db1b7b72b642458799bb2ad08902dd93697263698dcb37ca64f277",
+      "actual": "REPORTER_ONLY",
+      "readback": {
+        "counts": "1|1",
+        "property0": "SEALED|0x736A168247e3f0C52F7907c9a8fDac572DF9c8bB|0xA63DE24e30C88FB1019E8956654730316e36eDBE|LEASE-204-KITCHEN|Kitchen|Sink and supply lines|At handover, the kitchen sink, tap, cabinet base, drain and visible supply lines were dry, intact and operating normally. No water staining or swelling was recorded.|The owner maintains concealed plumbing, supply lines and building systems. The tenant is responsible for misuse, avoidable overflow and reasonable day-to-day care. Ordinary wear is not tenant damage. Accidental damage with shared maintenance contribution is shared responsibility.|0|1"
+      }
+    },
+    {
+      "id": "H6-tenant-seal-report",
+      "actor": "0xA63DE24e30C88FB1019E8956654730316e36eDBE",
+      "method": "seal_report",
+      "args": [
+        0
+      ],
+      "allowed": [
+        "REPORT_SEALED"
+      ],
+      "status": "VERIFIED",
+      "hash": "0xcec8b8d38a50e73e131757950765aa6e9a5c819b00553c97f97f903aaf2e5521",
+      "actual": "REPORT_SEALED",
+      "readback": {
+        "counts": "1|1",
+        "property0": "SEALED|0x736A168247e3f0C52F7907c9a8fDac572DF9c8bB|0xA63DE24e30C88FB1019E8956654730316e36eDBE|LEASE-204-KITCHEN|Kitchen|Sink and supply lines|At handover, the kitchen sink, tap, cabinet base, drain and visible supply lines were dry, intact and operating normally. No water staining or swelling was recorded.|The owner maintains concealed plumbing, supply lines and building systems. The tenant is responsible for misuse, avoidable overflow and reasonable day-to-day care. Ordinary wear is not tenant damage. Accidental damage with shared maintenance contribution is shared responsibility.|0|1"
+      }
+    },
+    {
+      "id": "H7-assess-misuse",
+      "actor": "0x736A168247e3f0C52F7907c9a8fDac572DF9c8bB",
+      "method": "assess_report",
+      "args": [
+        0
+      ],
+      "allowed": [
+        "TENANT_RESPONSIBLE",
+        "ASSESSMENT_RETRYABLE"
+      ],
+      "status": "VERIFIED",
+      "hash": "0xb5017a31859b2a2d7bb303fe2a43051f1c014f34134215cd48c1460e52e3fd1e",
+      "actual": "ASSESSMENT_RETRYABLE",
+      "readback": {
+        "counts": "1|1",
+        "property0": "SEALED|0x736A168247e3f0C52F7907c9a8fDac572DF9c8bB|0xA63DE24e30C88FB1019E8956654730316e36eDBE|LEASE-204-KITCHEN|Kitchen|Sink and supply lines|At handover, the kitchen sink, tap, cabinet base, drain and visible supply lines were dry, intact and operating normally. No water staining or swelling was recorded.|The owner maintains concealed plumbing, supply lines and building systems. The tenant is responsible for misuse, avoidable overflow and reasonable day-to-day care. Ordinary wear is not tenant damage. Accidental damage with shared maintenance contribution is shared responsibility.|0|1",
+        "report0": "SEALED|0|1|0xA63DE24e30C88FB1019E8956654730316e36eDBE|UNEVALUATED|PENDING||After handover, the tenant left the tap running with the drain stopper closed for about twenty minutes. Water overflowed onto the previously dry cabinet base, causing new swelling.|I inspected after the reported overflow. The cabinet shows fresh overflow staining from above; the visible supply and drain connections were dry and operating, with no system leak."
+      }
+    },
+    {
+      "id": "H7b-explicit-retry",
+      "actor": "0xA63DE24e30C88FB1019E8956654730316e36eDBE",
+      "method": "assess_report",
+      "args": [
+        0
+      ],
+      "allowed": [
+        "TENANT_RESPONSIBLE"
+      ],
+      "status": "SUBMITTED",
+      "hash": "0x3e0dd97d0be6ee4c4f9973d7d436dae28ca51eba84e77aaff69d52050ad24867"
+    }
+  ],
+  "complete": false
+}
