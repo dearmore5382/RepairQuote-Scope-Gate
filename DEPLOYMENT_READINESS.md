@@ -1,6 +1,6 @@
 # Deployment readiness
 
-Status: **READY FOR USER DEPLOYMENT**
+Status: **RELEASE VERIFIED**
 
 Exact contract source SHA-256:
 
@@ -31,3 +31,5 @@ Required after deployment:
 - Failure paths: invalid input, wrong digest, unauthorized capture, replay.
 - Adversarial paths: out-of-scope and ambiguous quote fixtures.
 - Finalized consensus plus authoritative state readback for every accepted claim.
+
+All post-deployment requirements passed at `0x5D3618484389dDb5788F6AC975A8163aEac21C4f`. The frozen live matrix completed 16/16 steps.

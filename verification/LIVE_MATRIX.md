@@ -1,6 +1,6 @@
 # Frozen Studionet matrix
 
-The exact transaction plan will be populated with commit-pinned raw fixture URLs after the repository has a public commit. No live claim is made before a matching-source deployment exists.
+The matrix uses raw fixture URLs pinned to Git commit `b379644f492cd730e9f7655052b3138250dc65b8`. It completed 16/16 steps on the matching-source deployment.
 
 | Group | Scenario | Expected |
 |---|---|---|
