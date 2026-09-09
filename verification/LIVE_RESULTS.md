@@ -14,3 +14,5 @@ The frozen live workflow completed **16/16** steps with FINALIZED consensus and 
 - an exact GitHub URL paired with a false SHA-256 returned `APPROVED_SCOPE_HASH_MISMATCH`, and the record remained `DRAFT` with no captured snapshot or verdict.
 
 Public machine-readable evidence: `live-0x5d3618484389ddb5788f6ac975a8163aeac21c4f.json`.
+
+Human-readable transaction links: `STUDIONET_E2E.md`.

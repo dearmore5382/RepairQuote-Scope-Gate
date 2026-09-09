@@ -32,3 +32,9 @@ npm run build
 ```
 
 Deployment is intentionally unset until a matching-source Studionet contract passes the live happy, failure, and adversarial matrix.
+
+## Verified deployment
+
+- [Studionet contract](https://explorer-studio.genlayer.com/address/0x5D3618484389dDb5788F6AC975A8163aEac21C4f)
+- [Human-readable 16-step E2E evidence](verification/STUDIONET_E2E.md)
+- [Machine-readable E2E checkpoint](verification/live-0x5d3618484389ddb5788f6ac975a8163aeac21c4f.json)
