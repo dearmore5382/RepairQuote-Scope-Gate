@@ -1,0 +1,148 @@
+{
+  "contract": "0x5D3618484389dDb5788F6AC975A8163aEac21C4f",
+  "source_sha256": "db38ed4f22ce58b1d2f8cf870487867e6f3d1c3eac7d5d1310f0f43f3a4df03f",
+  "fixture_commit": "b379644f492cd730e9f7655052b3138250dc65b8",
+  "wallets": [
+    "0x736A168247e3f0C52F7907c9a8fDac572DF9c8bB",
+    "0xA63DE24e30C88FB1019E8956654730316e36eDBE"
+  ],
+  "steps": [
+    {
+      "id": "F1-invalid-title",
+      "actor": "0x736A168247e3f0C52F7907c9a8fDac572DF9c8bB",
+      "method": "create_review",
+      "args": [
+        "",
+        "https://raw.githubusercontent.com/dearmore5382/RepairQuote-Scope-Gate/b379644f492cd730e9f7655052b3138250dc65b8/test-fixtures/approved-scope.json",
+        "fcea0a746395b8f1c9b7499da54c9adc21eda9de420302cfd01ae32ebcf266b8",
+        "https://raw.githubusercontent.com/dearmore5382/RepairQuote-Scope-Gate/b379644f492cd730e9f7655052b3138250dc65b8/test-fixtures/quote-happy.json",
+        "1606137ebec9f9e347a43aef3abff85bb0e9be06503e6b158b4466e3dad2be56"
+      ],
+      "expected": "INVALID_TITLE",
+      "status": "VERIFIED",
+      "hash": "0x20375606d537ed5639f64a3735aee19d537898375002a658a1083485cf4e40ab",
+      "actual": "INVALID_TITLE",
+      "readback": {
+        "count": "0"
+      }
+    },
+    {
+      "id": "H1-create",
+      "actor": "0x736A168247e3f0C52F7907c9a8fDac572DF9c8bB",
+      "method": "create_review",
+      "args": [
+        "Kitchen sink quote",
+        "https://raw.githubusercontent.com/dearmore5382/RepairQuote-Scope-Gate/b379644f492cd730e9f7655052b3138250dc65b8/test-fixtures/approved-scope.json",
+        "fcea0a746395b8f1c9b7499da54c9adc21eda9de420302cfd01ae32ebcf266b8",
+        "https://raw.githubusercontent.com/dearmore5382/RepairQuote-Scope-Gate/b379644f492cd730e9f7655052b3138250dc65b8/test-fixtures/quote-happy.json",
+        "1606137ebec9f9e347a43aef3abff85bb0e9be06503e6b158b4466e3dad2be56"
+      ],
+      "expected": "0",
+      "status": "VERIFIED",
+      "hash": "0xa9d425b7c91050d92b2383282e81ba1e6d6233323f4ebfc6f6bcd704d75c7fee",
+      "actual": "0",
+      "readback": {
+        "count": "1",
+        "review0": "DRAFT|0x736A168247e3f0C52F7907c9a8fDac572DF9c8bB|Kitchen sink quote|https://raw.githubusercontent.com/dearmore5382/RepairQuote-Scope-Gate/b379644f492cd730e9f7655052b3138250dc65b8/test-fixtures/approved-scope.json|fcea0a746395b8f1c9b7499da54c9adc21eda9de420302cfd01ae32ebcf266b8|https://raw.githubusercontent.com/dearmore5382/RepairQuote-Scope-Gate/b379644f492cd730e9f7655052b3138250dc65b8/test-fixtures/quote-happy.json|1606137ebec9f9e347a43aef3abff85bb0e9be06503e6b158b4466e3dad2be56|UNASSESSED|AWAITING_SOURCE_CAPTURE"
+      }
+    },
+    {
+      "id": "F2-outsider-capture",
+      "actor": "0xA63DE24e30C88FB1019E8956654730316e36eDBE",
+      "method": "capture_sources",
+      "args": [
+        0
+      ],
+      "expected": "CREATOR_ONLY",
+      "status": "VERIFIED",
+      "hash": "0x337ae4a742c507ea9cb9142608328f6763edfea7fabb569036a4081ddf3c2411",
+      "actual": "CREATOR_ONLY",
+      "readback": {
+        "count": "1",
+        "review0": "DRAFT|0x736A168247e3f0C52F7907c9a8fDac572DF9c8bB|Kitchen sink quote|https://raw.githubusercontent.com/dearmore5382/RepairQuote-Scope-Gate/b379644f492cd730e9f7655052b3138250dc65b8/test-fixtures/approved-scope.json|fcea0a746395b8f1c9b7499da54c9adc21eda9de420302cfd01ae32ebcf266b8|https://raw.githubusercontent.com/dearmore5382/RepairQuote-Scope-Gate/b379644f492cd730e9f7655052b3138250dc65b8/test-fixtures/quote-happy.json|1606137ebec9f9e347a43aef3abff85bb0e9be06503e6b158b4466e3dad2be56|UNASSESSED|AWAITING_SOURCE_CAPTURE"
+      }
+    },
+    {
+      "id": "F3-assess-before-capture",
+      "actor": "0x736A168247e3f0C52F7907c9a8fDac572DF9c8bB",
+      "method": "assess_quote",
+      "args": [
+        0
+      ],
+      "expected": "ASSESSMENT_NOT_ALLOWED",
+      "status": "VERIFIED",
+      "hash": "0x46c19e5f0d5333b6109b2b524121f397afcce2a531cd69fee022ff5fbffdcf4f",
+      "actual": "ASSESSMENT_NOT_ALLOWED",
+      "readback": {
+        "count": "1",
+        "review0": "DRAFT|0x736A168247e3f0C52F7907c9a8fDac572DF9c8bB|Kitchen sink quote|https://raw.githubusercontent.com/dearmore5382/RepairQuote-Scope-Gate/b379644f492cd730e9f7655052b3138250dc65b8/test-fixtures/approved-scope.json|fcea0a746395b8f1c9b7499da54c9adc21eda9de420302cfd01ae32ebcf266b8|https://raw.githubusercontent.com/dearmore5382/RepairQuote-Scope-Gate/b379644f492cd730e9f7655052b3138250dc65b8/test-fixtures/quote-happy.json|1606137ebec9f9e347a43aef3abff85bb0e9be06503e6b158b4466e3dad2be56|UNASSESSED|AWAITING_SOURCE_CAPTURE"
+      }
+    },
+    {
+      "id": "H2-capture",
+      "actor": "0x736A168247e3f0C52F7907c9a8fDac572DF9c8bB",
+      "method": "capture_sources",
+      "args": [
+        0
+      ],
+      "expected": "SOURCES_CAPTURED",
+      "status": "VERIFIED",
+      "hash": "0x01c77921eff58590b9719fa703acffdeda209b6a8d5c073c7c966b07288fea37",
+      "actual": "SOURCES_CAPTURED",
+      "readback": {
+        "count": "1",
+        "review0": "CAPTURED|0x736A168247e3f0C52F7907c9a8fDac572DF9c8bB|Kitchen sink quote|https://raw.githubusercontent.com/dearmore5382/RepairQuote-Scope-Gate/b379644f492cd730e9f7655052b3138250dc65b8/test-fixtures/approved-scope.json|fcea0a746395b8f1c9b7499da54c9adc21eda9de420302cfd01ae32ebcf266b8|https://raw.githubusercontent.com/dearmore5382/RepairQuote-Scope-Gate/b379644f492cd730e9f7655052b3138250dc65b8/test-fixtures/quote-happy.json|1606137ebec9f9e347a43aef3abff85bb0e9be06503e6b158b4466e3dad2be56|UNASSESSED|AUTHENTICATED_PACKAGE_CAPTURED"
+      }
+    },
+    {
+      "id": "H3-assess",
+      "actor": "0xA63DE24e30C88FB1019E8956654730316e36eDBE",
+      "method": "assess_quote",
+      "args": [
+        0
+      ],
+      "expected": "QUOTE_ACCEPTABLE",
+      "status": "VERIFIED",
+      "hash": "0x598e0f97dae729004253561980e454666c2514a1220cbd5a5d4b4a32fc9c510f",
+      "actual": "QUOTE_ACCEPTABLE",
+      "readback": {
+        "count": "1",
+        "review0": "ASSESSED|0x736A168247e3f0C52F7907c9a8fDac572DF9c8bB|Kitchen sink quote|https://raw.githubusercontent.com/dearmore5382/RepairQuote-Scope-Gate/b379644f492cd730e9f7655052b3138250dc65b8/test-fixtures/approved-scope.json|fcea0a746395b8f1c9b7499da54c9adc21eda9de420302cfd01ae32ebcf266b8|https://raw.githubusercontent.com/dearmore5382/RepairQuote-Scope-Gate/b379644f492cd730e9f7655052b3138250dc65b8/test-fixtures/quote-happy.json|1606137ebec9f9e347a43aef3abff85bb0e9be06503e6b158b4466e3dad2be56|QUOTE_ACCEPTABLE|ALL_LINES_WITHIN_AUTHENTICATED_SCOPE"
+      }
+    },
+    {
+      "id": "F4-replay",
+      "actor": "0x736A168247e3f0C52F7907c9a8fDac572DF9c8bB",
+      "method": "assess_quote",
+      "args": [
+        0
+      ],
+      "expected": "ASSESSMENT_NOT_ALLOWED",
+      "status": "VERIFIED",
+      "hash": "0x293bd0e2d2f6d2e3b866c6b9066015ae60b178f9b45bb672ade6c7c9219d4bb8",
+      "actual": "ASSESSMENT_NOT_ALLOWED",
+      "readback": {
+        "count": "1",
+        "review0": "ASSESSED|0x736A168247e3f0C52F7907c9a8fDac572DF9c8bB|Kitchen sink quote|https://raw.githubusercontent.com/dearmore5382/RepairQuote-Scope-Gate/b379644f492cd730e9f7655052b3138250dc65b8/test-fixtures/approved-scope.json|fcea0a746395b8f1c9b7499da54c9adc21eda9de420302cfd01ae32ebcf266b8|https://raw.githubusercontent.com/dearmore5382/RepairQuote-Scope-Gate/b379644f492cd730e9f7655052b3138250dc65b8/test-fixtures/quote-happy.json|1606137ebec9f9e347a43aef3abff85bb0e9be06503e6b158b4466e3dad2be56|QUOTE_ACCEPTABLE|ALL_LINES_WITHIN_AUTHENTICATED_SCOPE"
+      }
+    },
+    {
+      "id": "H4-close",
+      "actor": "0x736A168247e3f0C52F7907c9a8fDac572DF9c8bB",
+      "method": "close_review",
+      "args": [
+        0
+      ],
+      "expected": "REVIEW_CLOSED",
+      "status": "VERIFIED",
+      "hash": "0x9d78409cdb19139a2c2f888fb71aa0f9b9ae2178f0965eef097d940323fad123",
+      "actual": "REVIEW_CLOSED",
+      "readback": {
+        "count": "1",
+        "review0": "CLOSED|0x736A168247e3f0C52F7907c9a8fDac572DF9c8bB|Kitchen sink quote|https://raw.githubusercontent.com/dearmore5382/RepairQuote-Scope-Gate/b379644f492cd730e9f7655052b3138250dc65b8/test-fixtures/approved-scope.json|fcea0a746395b8f1c9b7499da54c9adc21eda9de420302cfd01ae32ebcf266b8|https://raw.githubusercontent.com/dearmore5382/RepairQuote-Scope-Gate/b379644f492cd730e9f7655052b3138250dc65b8/test-fixtures/quote-happy.json|1606137ebec9f9e347a43aef3abff85bb0e9be06503e6b158b4466e3dad2be56|QUOTE_ACCEPTABLE|ALL_LINES_WITHIN_AUTHENTICATED_SCOPE"
+      }
+    }
+  ],
+  "complete": true,
+  "frozen": "ASSESSED|0x736A168247e3f0C52F7907c9a8fDac572DF9c8bB|Kitchen sink quote|https://raw.githubusercontent.com/dearmore5382/RepairQuote-Scope-Gate/b379644f492cd730e9f7655052b3138250dc65b8/test-fixtures/approved-scope.json|fcea0a746395b8f1c9b7499da54c9adc21eda9de420302cfd01ae32ebcf266b8|https://raw.githubusercontent.com/dearmore5382/RepairQuote-Scope-Gate/b379644f492cd730e9f7655052b3138250dc65b8/test-fixtures/quote-happy.json|1606137ebec9f9e347a43aef3abff85bb0e9be06503e6b158b4466e3dad2be56|QUOTE_ACCEPTABLE|ALL_LINES_WITHIN_AUTHENTICATED_SCOPE"
+}
