@@ -162,6 +162,8 @@ button:not(:disabled):active,
   align-items: start;
   padding-top: clamp(52px, 7vh, 78px);
 }
+.route-create .intro { display: none; }
+.route-create .desk { margin-top: 32px; }
 .route-explorer .intro, .route-explorer .desk { display: none; }
 .route-explorer .decision-panel:not(:has(h2:not(:empty))) { display: none; }
 .explorer-page { padding: 72px clamp(20px, 5vw, 76px); min-height: 62vh; }
