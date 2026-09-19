@@ -289,6 +289,31 @@ export default function HomePage() {
       setBusy(false);
     }
   }
+  function runLifecycleAction(
+    method: 'capture_sources' | 'assess_quote' | 'close_review',
+    requiredStatus: 'DRAFT' | 'CAPTURED' | 'ASSESSED',
+  ) {
+    if (!wallet) {
+      setNotice('Connect a Studionet wallet first, then retry this action.');
+      void connect();
+      return;
+    }
+    if (!review) {
+      setNotice('Enter a review ID and click Read before choosing a lifecycle action.');
+      return;
+    }
+    if (review.status !== requiredStatus) {
+      setNotice(
+        `This action requires ${requiredStatus}; review ${reviewId} is ${review.status}.`,
+      );
+      return;
+    }
+    if (method === 'close_review' && !same(wallet, review.creator)) {
+      setNotice('Only the creator wallet shown in this review may close it.');
+      return;
+    }
+    void send(method, [uint(reviewId)]);
+  }
   async function reconcile(row: Journal) {
     setBusy(true);
     try {
@@ -399,7 +424,7 @@ export default function HomePage() {
         <button
           className="wallet-button"
           onClick={connect}
-          disabled={busy || !writesEnabled}
+          disabled={busy}
         >
           <Wallet size={17} />
           {wallet ? short(wallet) : 'Connect wallet'}
@@ -448,7 +473,7 @@ export default function HomePage() {
               <h1>Finalized records, readable by anyone.</h1>
               <p>Load authoritative StudioNet state, select a record, and see exactly which action is valid next.</p>
             </div>
-            <button onClick={() => void loadExplorer()} disabled={busy || !configured}>
+            <button onClick={() => void loadExplorer()} disabled={busy}>
               <ListFilter /> Load all records
             </button>
           </div>
@@ -560,7 +585,7 @@ export default function HomePage() {
             </label>
             <button
               className="primary-action"
-              disabled={!writesEnabled || busy}
+              disabled={busy}
             >
               Create review <ArrowRight size={17} />
             </button>
@@ -576,30 +601,31 @@ export default function HomePage() {
             </label>
             <button
               onClick={() => void refresh()}
-              disabled={!configured || busy}
+              disabled={busy}
             >
               <RefreshCw /> Read
             </button>
             <button
-              onClick={() => void send('capture_sources', [uint(reviewId)])}
-              disabled={!writesEnabled || busy || review?.status !== 'DRAFT'}
+              onClick={() => runLifecycleAction('capture_sources', 'DRAFT')}
+              disabled={busy}
             >
               <Link2 /> Capture
             </button>
             <button
-              onClick={() => void send('assess_quote', [uint(reviewId)])}
-              disabled={!writesEnabled || busy || review?.status !== 'CAPTURED'}
+              onClick={() => runLifecycleAction('assess_quote', 'CAPTURED')}
+              disabled={busy}
             >
               <ScanSearch /> Assess
             </button>
             <button
-              onClick={() => void send('close_review', [uint(reviewId)])}
-              disabled={!writesEnabled || busy || review?.status !== 'ASSESSED' || !same(wallet, review?.creator)}
-              title={!same(wallet, review?.creator) ? 'Connect the creator wallet to close this review.' : undefined}
+              onClick={() => runLifecycleAction('close_review', 'ASSESSED')}
+              disabled={busy}
+              title="Only the review creator may complete this terminal transition."
             >
               <Archive /> Close
             </button>
           </div>
+          <output className="action-feedback">{notice}</output>
           {review && (
             <div className="next-action">
               <b>Next valid action</b>

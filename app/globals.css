@@ -322,6 +322,14 @@ textarea {
   align-items: center;
   gap: 7px;
 }
+.action-feedback {
+  margin: 12px 0 0;
+  padding: 12px 14px;
+  border-left: 3px solid var(--accent);
+  background: #fff8e8;
+  color: var(--ink);
+  line-height: 1.45;
+}
 .decision-panel {
   margin: 54px clamp(20px, 5vw, 76px);
   display: grid;
