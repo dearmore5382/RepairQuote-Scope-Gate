@@ -1,6 +1,6 @@
 'use client';
+/* oxlint-disable next/no-html-link-for-pages -- Native navigation is intentional: client-side Link routing did not navigate in the deployed Vinext Worker. */
 import Image from 'next/image';
-import Link from 'next/link';
 import { useEffect, useState, type FormEvent } from 'react';
 import { abi, createClient } from 'genlayer-js';
 import { studionet } from 'genlayer-js/chains';
@@ -414,9 +414,9 @@ export default function HomePage() {
           </span>
         </a>
         <nav className="main-nav" aria-label="Primary navigation">
-          <Link href="/" aria-current={route === '/' ? 'page' : undefined}>Overview</Link>
-          <Link href="/create" aria-current={route === '/create' ? 'page' : undefined}>New review</Link>
-          <Link href="/explorer" aria-current={route === '/explorer' ? 'page' : undefined}>Explorer</Link>
+          <a href="/" aria-current={route === '/' ? 'page' : undefined}>Overview</a>
+          <a href="/create" aria-current={route === '/create' ? 'page' : undefined}>New review</a>
+          <a href="/explorer" aria-current={route === '/explorer' ? 'page' : undefined}>Explorer</a>
         </nav>
         <div className="contract-chip">
           <i /> Studionet · {configured ? short(address) : 'pre-deployment'}
@@ -446,8 +446,8 @@ export default function HomePage() {
             one narrow scope verdict.
           </p>
           <div className="hero-actions">
-            <Link href="/create">Create a review <ArrowRight size={17} /></Link>
-            <Link href="/explorer" className="secondary">Browse completed cases</Link>
+            <a href="/create">Create a review <ArrowRight size={17} /></a>
+            <a href="/explorer" className="secondary">Browse completed cases</a>
           </div>
         </div>
         <div className="process-map">

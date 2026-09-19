@@ -118,6 +118,12 @@ button:disabled {
   opacity: 0.48;
   cursor: not-allowed;
 }
+button:not(:disabled),
+.hero-actions a,
+.main-nav a { cursor: pointer; }
+button:not(:disabled):active,
+.hero-actions a:active,
+.main-nav a:active { transform: translateY(1px); }
 .intro {
   padding: 72px clamp(20px, 5vw, 76px) 48px;
   display: grid;
