@@ -155,7 +155,7 @@ button:not(:disabled):active,
   max-width: 650px;
 }
 .hero-actions { display: flex; gap: 12px; margin-top: 28px; }
-.hero-actions a, .explorer-head button { display: inline-flex; align-items: center; gap: 8px; background: var(--ink); color: white; text-decoration: none; border: 0; border-radius: 999px; padding: 14px 18px; font-weight: 700; }
+.hero-actions a, .explorer-head button, .explorer-actions a { display: inline-flex; align-items: center; gap: 8px; background: var(--ink); color: white; text-decoration: none; border: 0; border-radius: 999px; padding: 14px 18px; font-weight: 700; }
 .hero-actions a.secondary { color: var(--ink); background: transparent; border: 1px solid var(--line); }
 .route-home .desk, .route-home .decision-panel, .route-home .journal-panel { display: none; }
 .route-home .intro {
@@ -170,6 +170,10 @@ button:not(:disabled):active,
 .explorer-head { display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: end; padding-bottom: 34px; border-bottom: 1px solid var(--ink); }
 .explorer-head h1 { max-width: 760px; font-size: clamp(42px, 5vw, 72px); line-height: .98; letter-spacing: -.055em; margin: 14px 0; }
 .explorer-head p { color: var(--muted); font-size: 18px; max-width: 680px; line-height: 1.6; }
+.explorer-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 10px; }
+.explorer-actions a { color: var(--ink); background: white; border: 1px solid var(--line); }
+.explorer-actions a:hover { border-color: #2ca675; background: var(--pale); }
+.explorer-actions svg { width: 17px; height: 17px; }
 .review-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 30px; }
 .review-card { text-align: left; border: 1px solid var(--line); background: white; border-radius: 20px; padding: 24px; min-height: 190px; color: var(--deep); }
 .review-card:hover { border-color: #2ca675; transform: translateY(-2px); }
@@ -575,6 +579,7 @@ footer > span {
   .main-nav a { flex: 1; text-align: center; padding: 9px 6px; font-size: 12px; }
   .hero-actions { flex-direction: column; align-items: stretch; }
   .explorer-head { grid-template-columns: 1fr; }
+  .explorer-actions { justify-content: flex-start; }
   .review-grid { grid-template-columns: 1fr; }
   .brand span {
     display: none;

@@ -18,6 +18,7 @@ import {
   Wallet,
   ListFilter,
   UserRound,
+  ExternalLink,
 } from 'lucide-react';
 import deployment from './deployment.json';
 import {
@@ -496,9 +497,18 @@ export default function HomePage() {
               <h1>Finalized records, readable by anyone.</h1>
               <p>Load authoritative StudioNet state, select a record, and see exactly which action is valid next.</p>
             </div>
-            <button onClick={() => void loadExplorer()} disabled={busy}>
-              <ListFilter /> Load all records
-            </button>
+            <div className="explorer-actions">
+              <a
+                href={`https://explorer-studio.genlayer.com/address/${address}`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <ExternalLink /> Open GenLayer Explorer
+              </a>
+              <button onClick={() => void loadExplorer()} disabled={busy}>
+                <ListFilter /> Load all records
+              </button>
+            </div>
           </div>
           <div className="review-grid">
             {reviews.map((item) => (
