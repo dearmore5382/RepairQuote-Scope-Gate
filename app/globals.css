@@ -152,7 +152,11 @@ button:disabled {
 .hero-actions a, .explorer-head button { display: inline-flex; align-items: center; gap: 8px; background: var(--ink); color: white; text-decoration: none; border: 0; border-radius: 999px; padding: 14px 18px; font-weight: 700; }
 .hero-actions a.secondary { color: var(--ink); background: transparent; border: 1px solid var(--line); }
 .route-home .desk, .route-home .decision-panel, .route-home .journal-panel { display: none; }
-.route-home .intro { min-height: calc(100vh - 86px); }
+.route-home .intro {
+  min-height: calc(100vh - 86px);
+  align-items: start;
+  padding-top: clamp(52px, 7vh, 78px);
+}
 .route-explorer .intro, .route-explorer .desk { display: none; }
 .route-explorer .decision-panel:not(:has(h2:not(:empty))) { display: none; }
 .explorer-page { padding: 72px clamp(20px, 5vw, 76px); min-height: 62vh; }
