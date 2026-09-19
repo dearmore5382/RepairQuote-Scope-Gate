@@ -413,10 +413,10 @@ export default function HomePage() {
             RepairQuote <b>Scope Gate</b>
           </span>
         </a>
-        <nav className="main-nav">
-          <Link href="/">Overview</Link>
-          <Link href="/create">New review</Link>
-          <Link href="/explorer">Explorer</Link>
+        <nav className="main-nav" aria-label="Primary navigation">
+          <Link href="/" aria-current={route === '/' ? 'page' : undefined}>Overview</Link>
+          <Link href="/create" aria-current={route === '/create' ? 'page' : undefined}>New review</Link>
+          <Link href="/explorer" aria-current={route === '/explorer' ? 'page' : undefined}>Explorer</Link>
         </nav>
         <div className="contract-chip">
           <i /> Studionet · {configured ? short(address) : 'pre-deployment'}
