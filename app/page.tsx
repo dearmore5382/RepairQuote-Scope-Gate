@@ -464,6 +464,29 @@ export default function HomePage() {
             </div>
           ))}
         </div>
+        {route === '/' && (
+          <section className="home-explainer" aria-labelledby="how-title">
+            <div className="explainer-heading">
+              <span className="eyebrow">HOW IT WORKS · FAQ</span>
+              <h2 id="how-title">Clear inputs. Narrow decision.</h2>
+              <p>Every result can be traced back to exact public bytes and an authoritative on-chain record.</p>
+            </div>
+            <div className="faq-list">
+              <details open>
+                <summary>Where does the evidence come from?</summary>
+                <p>The creator locks commit-pinned raw JSON URLs and their SHA-256 digests. Validators fetch those exact URLs and recompute both hashes before any assessment.</p>
+              </details>
+              <details>
+                <summary>Who can run each step?</summary>
+                <p>Any connected wallet may capture and assess the locked public package. Only the review creator can close an assessed record.</p>
+              </details>
+              <details>
+                <summary>What does the AI decide?</summary>
+                <p>Only whether quoted work fits the authenticated approved scope: acceptable, scope violation, or review required. It does not decide price, liability, quality, or payment.</p>
+              </details>
+            </div>
+          </section>
+        )}
       </section>
       {route === '/explorer' && (
         <section className="explorer-page" id="workspace">

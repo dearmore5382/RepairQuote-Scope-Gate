@@ -159,7 +159,6 @@ button:not(:disabled):active,
 .hero-actions a.secondary { color: var(--ink); background: transparent; border: 1px solid var(--line); }
 .route-home .desk, .route-home .decision-panel, .route-home .journal-panel { display: none; }
 .route-home .intro {
-  min-height: calc(100vh - 86px);
   align-items: start;
   padding-top: clamp(52px, 7vh, 78px);
 }
@@ -480,6 +479,32 @@ footer > span {
 }
 .intro > div:first-child { animation: rise-in 620ms ease-out both; }
 .process-map { animation: rise-in 760ms 90ms ease-out both; }
+.home-explainer {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: minmax(260px, 0.72fr) minmax(0, 1.28fr);
+  gap: clamp(28px, 6vw, 90px);
+  margin-top: 22px;
+  padding: clamp(30px, 4vw, 52px);
+  border: 1px solid var(--line);
+  border-radius: 26px;
+  background: rgba(255, 255, 255, 0.58);
+  box-shadow: 0 22px 60px rgba(7, 59, 53, 0.07);
+}
+.explainer-heading h2 {
+  margin: 12px 0 16px;
+  font-size: clamp(30px, 3.2vw, 48px);
+  line-height: 1;
+  letter-spacing: -0.05em;
+}
+.explainer-heading p { color: var(--muted); line-height: 1.6; max-width: 430px; }
+.faq-list { border-top: 1px solid var(--line); }
+.faq-list details { border-bottom: 1px solid var(--line); padding: 18px 2px; }
+.faq-list summary { cursor: pointer; font-weight: 800; font-size: 17px; list-style: none; display: flex; justify-content: space-between; gap: 20px; }
+.faq-list summary::-webkit-details-marker { display: none; }
+.faq-list summary::after { content: '+'; color: #2ca675; font-size: 22px; line-height: 0.8; }
+.faq-list details[open] summary::after { content: '−'; }
+.faq-list p { color: var(--muted); line-height: 1.55; margin: 13px 38px 0 0; }
 @supports (animation-timeline: view()) {
   .desk,
   .decision-panel,
@@ -507,7 +532,7 @@ footer > span {
   }
   .main-nav { position: static; transform: none; order: 3; grid-column: 1/-1; justify-self: center; justify-content: center; margin-bottom: 10px; }
   .topbar { height: auto; min-height: 86px; padding-top: 10px; }
-  .route-home .intro { min-height: calc(100vh - 118px); }
+  .home-explainer { grid-template-columns: 1fr; }
   .contract-chip {
     display: none;
   }
