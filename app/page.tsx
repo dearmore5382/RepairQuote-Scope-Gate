@@ -294,11 +294,6 @@ export default function HomePage() {
     method: 'capture_sources' | 'assess_quote' | 'close_review',
     requiredStatus: 'DRAFT' | 'CAPTURED' | 'ASSESSED',
   ) {
-    if (!wallet) {
-      setNotice('Connect a Studionet wallet first, then retry this action.');
-      void connect();
-      return;
-    }
     if (!review) {
       setNotice('Enter a review ID and click Read before choosing a lifecycle action.');
       return;
@@ -307,6 +302,11 @@ export default function HomePage() {
       setNotice(
         `This action requires ${requiredStatus}; review ${reviewId} is ${review.status}.`,
       );
+      return;
+    }
+    if (!wallet) {
+      setNotice('This action is valid now. Connect a Studionet wallet to submit it.');
+      void connect();
       return;
     }
     if (method === 'close_review' && !same(wallet, review.creator)) {
