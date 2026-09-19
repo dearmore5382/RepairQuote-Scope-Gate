@@ -104,7 +104,6 @@ class RepairQuoteScopeGate(gl.Contract):
     @gl.public.write
     def capture_sources(self, review_id: u256) -> str:
         if not self._exists(review_id): return "REVIEW_NOT_FOUND"
-        if not self._creator(review_id): return "CREATOR_ONLY"
         if self.statuses[review_id] != "DRAFT": return "CAPTURE_NOT_ALLOWED"
         approved = _fetch_exact(str(self.approved_urls[review_id]))
         quote = _fetch_exact(str(self.quote_urls[review_id]))

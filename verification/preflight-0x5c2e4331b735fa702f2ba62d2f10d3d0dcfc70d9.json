@@ -1,0 +1,7 @@
+{
+  "contract": "0x5c2E4331B735FA702F2Ba62d2F10D3d0dCFc70D9",
+  "chain_id": 61999,
+  "local_sha256": "9a97bf34b6c01d93662823951d555c44f7000f10c2d12872f796fa20cb02425b",
+  "deployed_sha256": "9a97bf34b6c01d93662823951d555c44f7000f10c2d12872f796fa20cb02425b",
+  "exact_source_parity": true
+}

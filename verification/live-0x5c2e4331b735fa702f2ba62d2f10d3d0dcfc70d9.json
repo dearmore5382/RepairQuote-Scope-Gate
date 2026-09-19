@@ -1,6 +1,6 @@
 {
-  "contract": "0x5D3618484389dDb5788F6AC975A8163aEac21C4f",
-  "source_sha256": "db38ed4f22ce58b1d2f8cf870487867e6f3d1c3eac7d5d1310f0f43f3a4df03f",
+  "contract": "0x5c2E4331B735FA702F2Ba62d2F10D3d0dCFc70D9",
+  "source_sha256": "9a97bf34b6c01d93662823951d555c44f7000f10c2d12872f796fa20cb02425b",
   "fixture_commit": "b379644f492cd730e9f7655052b3138250dc65b8",
   "wallets": [
     "0x736A168247e3f0C52F7907c9a8fDac572DF9c8bB",
@@ -20,7 +20,7 @@
       ],
       "expected": "INVALID_TITLE",
       "status": "VERIFIED",
-      "hash": "0x20375606d537ed5639f64a3735aee19d537898375002a658a1083485cf4e40ab",
+      "hash": "0x1b3e10723817f9f938677bf36660e31c30251828f2af75856e9c89fc504ecff5",
       "actual": "INVALID_TITLE",
       "readback": {
         "count": "0"
@@ -39,7 +39,7 @@
       ],
       "expected": "0",
       "status": "VERIFIED",
-      "hash": "0xa9d425b7c91050d92b2383282e81ba1e6d6233323f4ebfc6f6bcd704d75c7fee",
+      "hash": "0x6d8de8cfc9d10b32a47d246edcb67178dc7a0deb5d27d797917187d8902d1185",
       "actual": "0",
       "readback": {
         "count": "1",
@@ -47,23 +47,7 @@
       }
     },
     {
-      "id": "F2-outsider-capture",
-      "actor": "0xA63DE24e30C88FB1019E8956654730316e36eDBE",
-      "method": "capture_sources",
-      "args": [
-        0
-      ],
-      "expected": "CREATOR_ONLY",
-      "status": "VERIFIED",
-      "hash": "0x337ae4a742c507ea9cb9142608328f6763edfea7fabb569036a4081ddf3c2411",
-      "actual": "CREATOR_ONLY",
-      "readback": {
-        "count": "1",
-        "review0": "DRAFT|0x736A168247e3f0C52F7907c9a8fDac572DF9c8bB|Kitchen sink quote|https://raw.githubusercontent.com/dearmore5382/RepairQuote-Scope-Gate/b379644f492cd730e9f7655052b3138250dc65b8/test-fixtures/approved-scope.json|fcea0a746395b8f1c9b7499da54c9adc21eda9de420302cfd01ae32ebcf266b8|https://raw.githubusercontent.com/dearmore5382/RepairQuote-Scope-Gate/b379644f492cd730e9f7655052b3138250dc65b8/test-fixtures/quote-happy.json|1606137ebec9f9e347a43aef3abff85bb0e9be06503e6b158b4466e3dad2be56|UNASSESSED|AWAITING_SOURCE_CAPTURE"
-      }
-    },
-    {
-      "id": "F3-assess-before-capture",
+      "id": "F2-assess-before-capture",
       "actor": "0x736A168247e3f0C52F7907c9a8fDac572DF9c8bB",
       "method": "assess_quote",
       "args": [
@@ -71,7 +55,7 @@
       ],
       "expected": "ASSESSMENT_NOT_ALLOWED",
       "status": "VERIFIED",
-      "hash": "0x46c19e5f0d5333b6109b2b524121f397afcce2a531cd69fee022ff5fbffdcf4f",
+      "hash": "0x9d85f5ca720e07c1e92241761870321f9df377dc92edbb804a249f52f10af195",
       "actual": "ASSESSMENT_NOT_ALLOWED",
       "readback": {
         "count": "1",
@@ -79,15 +63,15 @@
       }
     },
     {
-      "id": "H2-capture",
-      "actor": "0x736A168247e3f0C52F7907c9a8fDac572DF9c8bB",
+      "id": "H2-outsider-capture",
+      "actor": "0xA63DE24e30C88FB1019E8956654730316e36eDBE",
       "method": "capture_sources",
       "args": [
         0
       ],
       "expected": "SOURCES_CAPTURED",
       "status": "VERIFIED",
-      "hash": "0x01c77921eff58590b9719fa703acffdeda209b6a8d5c073c7c966b07288fea37",
+      "hash": "0xa116121be3c57684fb24902b913714c1830d620bb73b631a6d1cfb5f26fe9fb1",
       "actual": "SOURCES_CAPTURED",
       "readback": {
         "count": "1",
@@ -103,8 +87,24 @@
       ],
       "expected": "QUOTE_ACCEPTABLE",
       "status": "VERIFIED",
-      "hash": "0x598e0f97dae729004253561980e454666c2514a1220cbd5a5d4b4a32fc9c510f",
+      "hash": "0x234a49f01560bffa04084b2a45164072a442b655ecab489de573c969112a0832",
       "actual": "QUOTE_ACCEPTABLE",
+      "readback": {
+        "count": "1",
+        "review0": "ASSESSED|0x736A168247e3f0C52F7907c9a8fDac572DF9c8bB|Kitchen sink quote|https://raw.githubusercontent.com/dearmore5382/RepairQuote-Scope-Gate/b379644f492cd730e9f7655052b3138250dc65b8/test-fixtures/approved-scope.json|fcea0a746395b8f1c9b7499da54c9adc21eda9de420302cfd01ae32ebcf266b8|https://raw.githubusercontent.com/dearmore5382/RepairQuote-Scope-Gate/b379644f492cd730e9f7655052b3138250dc65b8/test-fixtures/quote-happy.json|1606137ebec9f9e347a43aef3abff85bb0e9be06503e6b158b4466e3dad2be56|QUOTE_ACCEPTABLE|ALL_LINES_WITHIN_AUTHENTICATED_SCOPE"
+      }
+    },
+    {
+      "id": "F3-outsider-close",
+      "actor": "0xA63DE24e30C88FB1019E8956654730316e36eDBE",
+      "method": "close_review",
+      "args": [
+        0
+      ],
+      "expected": "CREATOR_ONLY",
+      "status": "VERIFIED",
+      "hash": "0x78473c45e2cbd6ee9decfc8bf55a8f65d40531dc1ca7f44dac96f2f0437ba4a0",
+      "actual": "CREATOR_ONLY",
       "readback": {
         "count": "1",
         "review0": "ASSESSED|0x736A168247e3f0C52F7907c9a8fDac572DF9c8bB|Kitchen sink quote|https://raw.githubusercontent.com/dearmore5382/RepairQuote-Scope-Gate/b379644f492cd730e9f7655052b3138250dc65b8/test-fixtures/approved-scope.json|fcea0a746395b8f1c9b7499da54c9adc21eda9de420302cfd01ae32ebcf266b8|https://raw.githubusercontent.com/dearmore5382/RepairQuote-Scope-Gate/b379644f492cd730e9f7655052b3138250dc65b8/test-fixtures/quote-happy.json|1606137ebec9f9e347a43aef3abff85bb0e9be06503e6b158b4466e3dad2be56|QUOTE_ACCEPTABLE|ALL_LINES_WITHIN_AUTHENTICATED_SCOPE"
@@ -119,7 +119,7 @@
       ],
       "expected": "ASSESSMENT_NOT_ALLOWED",
       "status": "VERIFIED",
-      "hash": "0x293bd0e2d2f6d2e3b866c6b9066015ae60b178f9b45bb672ade6c7c9219d4bb8",
+      "hash": "0x0e97d2f1c1a303b348255e939fcd7221f24c76d4adb6861a77834aef710991c1",
       "actual": "ASSESSMENT_NOT_ALLOWED",
       "readback": {
         "count": "1",
@@ -135,7 +135,7 @@
       ],
       "expected": "REVIEW_CLOSED",
       "status": "VERIFIED",
-      "hash": "0x9d78409cdb19139a2c2f888fb71aa0f9b9ae2178f0965eef097d940323fad123",
+      "hash": "0x26c16b6be9b93919e6d584acb7a27fa6987fc12a6a83a0244d6d010f6647e694",
       "actual": "REVIEW_CLOSED",
       "readback": {
         "count": "1",
@@ -155,7 +155,7 @@
       ],
       "expected": "1",
       "status": "VERIFIED",
-      "hash": "0xd38cf03c9c1a48044f79cec83f7d1ff798056f8bd6f200a313442ddf3b3fab2a",
+      "hash": "0x92ab84cb76f5665819ff4c05e14acd709f2c9f5d837963b21deda8286d2b25d3",
       "actual": "1",
       "readback": {
         "count": "2",
@@ -165,14 +165,14 @@
     },
     {
       "id": "A2-capture-violation",
-      "actor": "0x736A168247e3f0C52F7907c9a8fDac572DF9c8bB",
+      "actor": "0xA63DE24e30C88FB1019E8956654730316e36eDBE",
       "method": "capture_sources",
       "args": [
         1
       ],
       "expected": "SOURCES_CAPTURED",
       "status": "VERIFIED",
-      "hash": "0xa1821ddf8f7a8555f80588120673373636bd1361927c08236eeeac751f163bde",
+      "hash": "0x9f3b8b240f804f9f19c1606fd8f42fc9ee10168f843ae54853a9acbe860d7302",
       "actual": "SOURCES_CAPTURED",
       "readback": {
         "count": "2",
@@ -189,7 +189,7 @@
       ],
       "expected": "SCOPE_VIOLATION",
       "status": "VERIFIED",
-      "hash": "0xd87b0aaef92447c753a8a5d9b0957011c6a700bb8aad9341025f6f436b560a32",
+      "hash": "0x88b335735d9e11dcd7a1dd855ae54d46f676c38dab09d8534e4f769cdf404729",
       "actual": "SCOPE_VIOLATION",
       "readback": {
         "count": "2",
@@ -210,7 +210,7 @@
       ],
       "expected": "2",
       "status": "VERIFIED",
-      "hash": "0x7bc5d60a4602f37a17ffdfd4333244f9dbf074a18796def31368661338f9dab0",
+      "hash": "0x7d120aff74eea44e774058a8863a5db1897da7d876498f72dd3b5113c8f8af7e",
       "actual": "2",
       "readback": {
         "count": "3",
@@ -221,14 +221,14 @@
     },
     {
       "id": "A5-capture-ambiguous",
-      "actor": "0x736A168247e3f0C52F7907c9a8fDac572DF9c8bB",
+      "actor": "0xA63DE24e30C88FB1019E8956654730316e36eDBE",
       "method": "capture_sources",
       "args": [
         2
       ],
       "expected": "SOURCES_CAPTURED",
       "status": "VERIFIED",
-      "hash": "0x566525ec7312818de0690b6ec474effa4437009e3cbe55d7e1cf54db6e463736",
+      "hash": "0xa4415126b75357cf7a3235ccf91940243128b0fbed0ce95e8842fd9743921a37",
       "actual": "SOURCES_CAPTURED",
       "readback": {
         "count": "3",
@@ -246,7 +246,7 @@
       ],
       "expected": "REVIEW_REQUIRED",
       "status": "VERIFIED",
-      "hash": "0x47dffc1f7582a938435feedf01a117e0667a805fc7342ab6cfcab7d77fc139bd",
+      "hash": "0x65d127a25b1ed145f6c69e4556764b780244ac4c46f9471350c00912933fccf2",
       "actual": "REVIEW_REQUIRED",
       "readback": {
         "count": "3",
@@ -268,7 +268,7 @@
       ],
       "expected": "3",
       "status": "VERIFIED",
-      "hash": "0x8129efe13aff74be0053402dda946ff62972048b4dffbd934ecfb09d6a47e2e9",
+      "hash": "0xfe1e2e2475d990f5531cc90cd741363a6dded9785cc2460cc30ed31c1dd74428",
       "actual": "3",
       "readback": {
         "count": "4",
@@ -280,14 +280,14 @@
     },
     {
       "id": "F6-reject-wrong-digest",
-      "actor": "0x736A168247e3f0C52F7907c9a8fDac572DF9c8bB",
+      "actor": "0xA63DE24e30C88FB1019E8956654730316e36eDBE",
       "method": "capture_sources",
       "args": [
         3
       ],
       "expected": "APPROVED_SCOPE_HASH_MISMATCH",
       "status": "VERIFIED",
-      "hash": "0x8aecb77c922a84527ee762f1161ac4a02e6849ece5a21fe38d0aab8c3a510143",
+      "hash": "0x3e3814013c198c6aa15f2fd4169118e2d1ca3ee78fa7738fec73d54360d0e79a",
       "actual": "APPROVED_SCOPE_HASH_MISMATCH",
       "readback": {
         "count": "4",

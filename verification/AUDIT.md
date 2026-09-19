@@ -7,7 +7,7 @@ Create a review using commit-pinned `approved-scope.json` and `quote-happy.json`
 ## Failure paths
 
 - Empty title, malformed URL, malformed digest.
-- Non-creator capture and close.
+- Non-creator close (capture is intentionally permissionless because it only verifies creator-locked public sources).
 - Approved-scope digest mismatch and quote digest mismatch.
 - Schema/project-reference mismatch.
 - Assessment before capture and repeated assessment after finalization.

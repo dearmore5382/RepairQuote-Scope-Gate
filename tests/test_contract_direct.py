@@ -23,12 +23,14 @@ def create(vm, contract):
     sync(vm, contract)
     return contract.create_review("Kitchen quote", "https://example.com/scope.json", sha(SCOPE), "https://example.com/quote.json", sha(QUOTE))
 
-def test_create_guards_and_creator_authority():
+def test_create_guards_and_permissionless_capture():
     vm, contract, _, outsider = deploy()
     with vm.activate():
         sync(vm, contract); assert contract.create_review("", "https://a", "0"*64, "https://b", "0"*64) == "INVALID_TITLE"; rid = create(vm, contract)
-    with vm.prank(outsider):
-        sync(vm, contract); assert contract.capture_sources(rid) == "CREATOR_ONLY"
+    module = contract._instance.create_review.__globals__
+    with vm.prank(outsider), patch.dict(module, {"_fetch_exact": lambda url: SCOPE if "scope" in url else QUOTE}):
+        sync(vm, contract); assert contract.capture_sources(rid) == "SOURCES_CAPTURED"
+    assert contract.get_review(rid).split("|")[0] == "CAPTURED"
 
 def test_package_schema_and_duplicate_ids():
     validate = deploy()[1]._instance.create_review.__globals__["_validate_package"]

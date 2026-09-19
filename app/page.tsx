@@ -1,5 +1,6 @@
 'use client';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useEffect, useState, type FormEvent } from 'react';
 import { abi, createClient } from 'genlayer-js';
 import { studionet } from 'genlayer-js/chains';
@@ -15,6 +16,8 @@ import {
   ScanSearch,
   ShieldCheck,
   Wallet,
+  ListFilter,
+  UserRound,
 } from 'lucide-react';
 import deployment from './deployment.json';
 import {
@@ -77,6 +80,7 @@ const decode = (value: unknown) => {
 };
 
 export default function HomePage() {
+  const [route, setRoute] = useState('/');
   const [wallet, setWallet] = useState('');
   const [busy, setBusy] = useState(false);
   const [notice, setNotice] = useState(
@@ -89,6 +93,10 @@ export default function HomePage() {
     null,
   );
   const [journal, setJournal] = useState<Journal[]>([]);
+  const [reviews, setReviews] = useState<
+    (ReturnType<typeof parseReview> & { id: number })[]
+  >([]);
+  useEffect(() => setRoute(window.location.pathname), []);
   useEffect(() => {
     try {
       setJournal(loadJournal(localStorage.getItem('repairquote:journal:v1')));
@@ -183,6 +191,35 @@ export default function HomePage() {
     try {
       await read();
       setNotice('Loaded finalized review state.');
+    } catch (e) {
+      setNotice(message(e));
+    } finally {
+      setBusy(false);
+    }
+  }
+  async function loadExplorer() {
+    setBusy(true);
+    try {
+      const countRaw = await reader.readContract({
+        address,
+        functionName: 'get_review_count',
+        args: [],
+        transactionHashVariant: TransactionHashVariant.LATEST_FINAL,
+      });
+      const count = Math.min(Number(String(countRaw)), 100);
+      const rows = await Promise.all(
+        Array.from({ length: count }, async (_, id) => {
+          const raw = await reader.readContract({
+            address,
+            functionName: 'get_review',
+            args: [BigInt(id)],
+            transactionHashVariant: TransactionHashVariant.LATEST_FINAL,
+          });
+          return { ...parseReview(raw), id };
+        }),
+      );
+      setReviews(rows.reverse());
+      setNotice(`Loaded ${rows.length} finalized review records.`);
     } catch (e) {
       setNotice(message(e));
     } finally {
@@ -338,7 +375,7 @@ export default function HomePage() {
         ? 'fail'
         : 'review';
   return (
-    <main className="app-shell">
+    <main className={`app-shell route-${route.replace('/', '') || 'home'}`}>
       <header className="topbar">
         <a className="brand" href="#workspace">
           <Image
@@ -351,6 +388,11 @@ export default function HomePage() {
             RepairQuote <b>Scope Gate</b>
           </span>
         </a>
+        <nav className="main-nav">
+          <Link href="/">Overview</Link>
+          <Link href="/create">New review</Link>
+          <Link href="/explorer">Explorer</Link>
+        </nav>
         <div className="contract-chip">
           <i /> Studionet · {configured ? short(address) : 'pre-deployment'}
         </div>
@@ -378,6 +420,10 @@ export default function HomePage() {
             scope. Exact bytes and SHA-256 bindings come first; AI is limited to
             one narrow scope verdict.
           </p>
+          <div className="hero-actions">
+            <Link href="/create">Create a review <ArrowRight size={17} /></Link>
+            <Link href="/explorer" className="secondary">Browse completed cases</Link>
+          </div>
         </div>
         <div className="process-map">
           {[
@@ -394,6 +440,31 @@ export default function HomePage() {
           ))}
         </div>
       </section>
+      {route === '/explorer' && (
+        <section className="explorer-page" id="workspace">
+          <div className="explorer-head">
+            <div>
+              <span className="eyebrow">PUBLIC REVIEW EXPLORER</span>
+              <h1>Finalized records, readable by anyone.</h1>
+              <p>Load authoritative StudioNet state, select a record, and see exactly which action is valid next.</p>
+            </div>
+            <button onClick={() => void loadExplorer()} disabled={busy || !configured}>
+              <ListFilter /> Load all records
+            </button>
+          </div>
+          <div className="review-grid">
+            {reviews.map((item) => (
+              <button key={item.id} className="review-card" onClick={() => void read(String(item.id))}>
+                <span>REVIEW {String(item.id).padStart(3, '0')}</span>
+                <h3>{item.title}</h3>
+                <p>{item.status} · {item.verdict.replaceAll('_', ' ')}</p>
+                <small>{short(item.creator)}</small>
+              </button>
+            ))}
+            {!reviews.length && <div className="empty-records">Select “Load all records” to read completed and in-progress cases from StudioNet.</div>}
+          </div>
+        </section>
+      )}
       <section className="desk">
         <aside className="case-rail">
           <span className="section-label">REVIEW RECORD</span>
@@ -436,6 +507,10 @@ export default function HomePage() {
                 ? 'Verified deployment'
                 : 'Writes locked until verified deployment'}
             </span>
+          </div>
+          <div className="role-callout">
+            <UserRound />
+            <div><b>Who may do what?</b><span>Anyone may capture and assess locked sources. Only the review creator may close an assessed record.</span></div>
           </div>
           <form className="source-binder-form" onSubmit={create}>
             <label className="wide">
@@ -507,23 +582,30 @@ export default function HomePage() {
             </button>
             <button
               onClick={() => void send('capture_sources', [uint(reviewId)])}
-              disabled={!writesEnabled || busy}
+              disabled={!writesEnabled || busy || review?.status !== 'DRAFT'}
             >
               <Link2 /> Capture
             </button>
             <button
               onClick={() => void send('assess_quote', [uint(reviewId)])}
-              disabled={!writesEnabled || busy}
+              disabled={!writesEnabled || busy || review?.status !== 'CAPTURED'}
             >
               <ScanSearch /> Assess
             </button>
             <button
               onClick={() => void send('close_review', [uint(reviewId)])}
-              disabled={!writesEnabled || busy}
+              disabled={!writesEnabled || busy || review?.status !== 'ASSESSED' || !same(wallet, review?.creator)}
+              title={!same(wallet, review?.creator) ? 'Connect the creator wallet to close this review.' : undefined}
             >
               <Archive /> Close
             </button>
           </div>
+          {review && (
+            <div className="next-action">
+              <b>Next valid action</b>
+              <span>{review.status === 'DRAFT' ? 'Capture sources — available to any connected wallet.' : review.status === 'CAPTURED' ? 'Run assessment — available to any connected wallet.' : review.status === 'ASSESSED' ? (same(wallet, review.creator) ? 'Close review — you are connected as creator.' : 'Only the creator can close. This wallet may still inspect the finalized assessment.') : 'This record is closed and read-only.'}</span>
+            </div>
+          )}
           <div className="source-board">
             <article>
               <span>APPROVED SCOPE</span>

@@ -4,9 +4,9 @@ Status: **RELEASE VERIFIED**
 
 Exact contract source SHA-256:
 
-`db38ed4f22ce58b1d2f8cf870487867e6f3d1c3eac7d5d1310f0f43f3a4df03f`
+`9a97bf34b6c01d93662823951d555c44f7000f10c2d12872f796fa20cb02425b`
 
-Verified local gates on 2026-09-09:
+Verified local gates on 2026-09-19:
 
 - Python contract/static/adversarial suite: 9 passed.
 - Frontend transaction/readback protocol suite: 5 passed.
@@ -28,8 +28,8 @@ Required after deployment:
 
 - Exact deployed byte parity.
 - Happy path: authenticated package -> `QUOTE_ACCEPTABLE`.
-- Failure paths: invalid input, wrong digest, unauthorized capture, replay.
+- Failure paths: invalid input, wrong digest, unauthorized close, replay.
 - Adversarial paths: out-of-scope and ambiguous quote fixtures.
 - Finalized consensus plus authoritative state readback for every accepted claim.
 
-All post-deployment requirements passed at `0x5D3618484389dDb5788F6AC975A8163aEac21C4f`. The frozen live matrix completed 16/16 steps.
+All post-deployment requirements passed at the wallet-owner deployment `0x5c2E4331B735FA702F2Ba62d2F10D3d0dCFc70D9`. Exact source parity passed and the frozen live matrix completed 16/16 steps.

@@ -6,7 +6,8 @@ The matrix uses raw fixture URLs pinned to Git commit `b379644f492cd730e9f765505
 |---|---|---|
 | Happy | create, capture happy package, assess, close | `QUOTE_ACCEPTABLE`, then `REVIEW_CLOSED` |
 | Failure | invalid create fields | explicit validation result, zero records |
-| Failure | outsider captures | `CREATOR_ONLY`, state unchanged |
+| Happy | outsider captures locked public sources | `SOURCES_CAPTURED` |
+| Failure | outsider closes assessed record | `CREATOR_ONLY`, state unchanged |
 | Failure | wrong digest | digest mismatch, state remains `DRAFT` |
 | Failure | assessment before capture | `ASSESSMENT_NOT_ALLOWED` |
 | Failure | assessment replay | `ASSESSMENT_NOT_ALLOWED`, frozen record unchanged |
